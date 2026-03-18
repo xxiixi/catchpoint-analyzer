@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-这是一个用于分析和对比网站性能数据的工具，专门设计用于处理 Catchpoint 导出的性能测试数据。
+一个用于分析和对比网站性能数据的工具，用于对比 Catchpoint 导出的性能测试数据。
 
 **主要功能：**
 - 解析 Catchpoint 导出的 JSON 格式性能数据
@@ -273,27 +273,3 @@ python3 analyze_performance.py --project myproject --date 0401 --baseline data/m
 **注：** 这些标准被 Google 搜索排名、Chrome DevTools、Lighthouse 等广泛采用。
 
 
-## 报告解读
-
-### 分析报告包含
-
-1. **核心Web指标** - LCP, FCP, CLS, TBT及评级
-2. **加载性能指标** - TTFB, Speed Index, 渲染时间
-3. **资源统计** - 下载大小、请求数量、网络延迟
-4. **地区对比** - 各地区性能排名
-
-### 对比报告包含
-
-1. **指标变化** - 优化前后的具体数值
-2. **改善幅度** - 绝对值和百分比变化
-3. **状态标识** - ✓改善 / ✗变差 / →无变化
-
----
-
-## 许可证
-
-MIT License
-
----
-
-**如有问题或建议，欢迎提交 Issue 或 Pull Request。**
