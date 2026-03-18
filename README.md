@@ -248,69 +248,52 @@ python3 analyze_performance.py --project myproject --date 0401 --baseline data/m
 }
 ```
 
-## 性能优化示例
-
-### 示例：优化前后对比
-
-**优化前（data/myproject/0318）：**
-- LCP: 7.9秒 (差)
-- FCP: 2.1秒 (需改进)
-- TTFB: 1.1秒 (需改进)
-- 页面大小: 16MB
-- 请求数: 118个
-
-**优化措施：**
-1. 启用 CDN
-2. 图片压缩和 WebP 格式
-3. 代码分割和懒加载
-4. 启用 Gzip/Brotli 压缩
-
-**优化后（data/myproject/0319）：**
-- LCP: 2.3秒 (优秀) ✓ 改善 70%
-- FCP: 0.9秒 (优秀) ✓ 改善 57%
-- TTFB: 0.4秒 (优秀) ✓ 改善 64%
-- 页面大小: 4MB ✓ 减少 75%
-- 请求数: 45个 ✓ 减少 62%
-
-**运行对比：**
-```bash
-python3 analyze_performance.py \
-  --project myproject \
-  --date 0319 \
-  --baseline data/myproject/0318/baseline.json
-```
 
 ## 性能评级标准
 
-### Core Web Vitals (核心指标)
+本工具使用 Google Web Vitals 和行业标准进行性能评级。
 
-**LCP (Largest Contentful Paint) - 最大内容绘制**
-- 衡量页面主要内容加载速度
-- 优秀: ≤ 2.5秒 | 需改进: 2.5-4秒 | 差: > 4秒
+### Core Web Vitals（核心指标）
 
-**FCP (First Contentful Paint) - 首次内容绘制**
-- 衡量首次显示内容的时间
-- 优秀: ≤ 1.8秒 | 需改进: 1.8-3秒 | 差: > 3秒
-
-**CLS (Cumulative Layout Shift) - 累积布局偏移**
-- 衡量视觉稳定性
-- 优秀: ≤ 0.1 | 需改进: 0.1-0.25 | 差: > 0.25
-
-**TBT (Total Blocking Time) - 总阻塞时间**
-- 衡量页面交互响应性
-- 优秀: ≤ 200ms | 需改进: 200-600ms | 差: > 600ms
+| 指标 | 说明 | 优秀 | 需改进 | 差 | 参考标准 |
+|------|------|------|--------|-----|---------|
+| **LCP**<br>最大内容绘制 | 衡量页面主要内容加载速度 | ≤ 2.5s | 2.5s - 4s | > 4s | [Google Web Vitals](https://web.dev/lcp/) |
+| **FCP**<br>首次内容绘制 | 衡量首次显示内容的时间 | ≤ 1.8s | 1.8s - 3s | > 3s | [Google Lighthouse](https://web.dev/fcp/) |
+| **CLS**<br>累积布局偏移 | 衡量视觉稳定性 | ≤ 0.1 | 0.1 - 0.25 | > 0.25 | [Google Web Vitals](https://web.dev/cls/) |
+| **TBT**<br>总阻塞时间 | 衡量页面交互响应性 | ≤ 200ms | 200ms - 600ms | > 600ms | [Google Lighthouse](https://web.dev/tbt/) |
 
 ### 其他重要指标
 
-**TTFB (Time To First Byte) - 首字节时间**
-- 衡量服务器响应速度
-- 优秀: ≤ 800ms | 需改进: 800-1800ms | 差: > 1800ms
+| 指标 | 说明 | 优秀 | 需改进 | 差 | 参考标准 |
+|------|------|------|--------|-----|---------|
+| **TTFB**<br>首字节时间 | 衡量服务器响应速度 | ≤ 800ms | 800ms - 1.8s | > 1.8s | Google PageSpeed Insights |
+| **Speed Index**<br>速度指数 | 衡量页面内容填充速度 | ≤ 3.4s | 3.4s - 5.8s | > 5.8s | [Google Lighthouse](https://web.dev/speed-index/) |
+| **Fully Loaded**<br>完全加载时间 | 所有资源加载完成的时间 | - | - | - | - |
 
-**Speed Index - 速度指数**
-- 衡量页面内容填充速度
-- 优秀: ≤ 3.4秒 | 需改进: 3.4-5.8秒 | 差: > 5.8秒
-
-**Fully Loaded - 完全加载时间**
-- 所有资源加载完成的时间
+**注：** 这些标准被 Google 搜索排名、Chrome DevTools、Lighthouse 等广泛采用。
 
 
+## 报告解读
+
+### 分析报告包含
+
+1. **核心Web指标** - LCP, FCP, CLS, TBT及评级
+2. **加载性能指标** - TTFB, Speed Index, 渲染时间
+3. **资源统计** - 下载大小、请求数量、网络延迟
+4. **地区对比** - 各地区性能排名
+
+### 对比报告包含
+
+1. **指标变化** - 优化前后的具体数值
+2. **改善幅度** - 绝对值和百分比变化
+3. **状态标识** - ✓改善 / ✗变差 / →无变化
+
+---
+
+## 许可证
+
+MIT License
+
+---
+
+**如有问题或建议，欢迎提交 Issue 或 Pull Request。**
